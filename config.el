@@ -59,4 +59,5 @@
  js-indent-level 2
  typescript-indent-level 2
  json-reformat:indent-width 2
- which-key-idle-delay 0.2)
+ which-key-idle-delay 0.2
+ evil-escape-key-sequence "fd")
