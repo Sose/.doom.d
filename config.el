@@ -56,10 +56,9 @@
 ;; Custom key binds
 (map! :m "C-s" #'swiper)
 
-(after! treemacs
-  (map! :leader
-        (:prefix "t"
-         :desc "Treemacs" "t" #'treemacs)))
+(map! :leader
+      (:prefix "t"
+       :desc "Treemacs" "t" #'treemacs))
 
 ;; My custom stuff
 (setq
