@@ -53,6 +53,14 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Custom key binds
+(map! :m "C-s" #'swiper)
+
+(after! treemacs
+  (map! :leader
+        (:prefix "t"
+         :desc "Treemacs" "t" #'treemacs)))
+
 ;; My custom stuff
 (setq
  projectile-project-search-path '("~/koodi")
@@ -60,6 +68,11 @@
  typescript-indent-level 2
  json-reformat:indent-width 2
  which-key-idle-delay 0.2
+ which-key-idle-secondary-delay 0.05
  evil-escape-key-sequence "fd"
  kill-whole-line t
- lsp-auto-guess-root t)
+ lsp-auto-guess-root t
+ scroll-margin 2
+ show-trailing-whitespace t
+ eldoc-idle-delay 0.1
+ +ivy-project-search-engines '(rg))
