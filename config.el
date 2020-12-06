@@ -60,4 +60,6 @@
  typescript-indent-level 2
  json-reformat:indent-width 2
  which-key-idle-delay 0.2
- evil-escape-key-sequence "fd")
+ evil-escape-key-sequence "fd"
+ kill-whole-line t
+ lsp-auto-guess-root t)

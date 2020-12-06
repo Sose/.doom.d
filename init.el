@@ -106,6 +106,7 @@
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
+       ;; (exwm +status)      ; another doomed window manager
        (:if IS-MAC macos)  ; improve compatibility with macOS
        ;;tty               ; improve the terminal Emacs experience
 
