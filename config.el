@@ -76,3 +76,5 @@
  show-trailing-whitespace t
  eldoc-idle-delay 0.1
  +ivy-project-search-engines '(rg))
+
+;; Test line
