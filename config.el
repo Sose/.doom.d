@@ -76,4 +76,6 @@
  eldoc-idle-delay 0.1
  +ivy-project-search-engines '(rg))
 
-;; Test line
+;; Native compile stuff
+;;(setq package-native-compile t)
+;;(setq comp-deferred-compilation t)
