@@ -53,12 +53,56 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Custom key binds
-(map! :m "C-s" #'swiper)
+(defun aborn/backward-kill-word ()
+  "Customize/Smart backward-kill-word."
+  (interactive)
+  (let* ((cp (point))
+         (backword)
+         (end)
+         (space-pos)
+         (backword-char (if (bobp)
+                            ""           ;; cursor in begin of buffer
+                          (buffer-substring cp (- cp 1)))))
+    (if (equal (length backword-char) (string-width backword-char))
+        (progn
+          (save-excursion
+            (setq backword (buffer-substring (point) (progn (forward-word -1) (point)))))
+          (setq ab/debug backword)
+          (save-excursion
+            (when (and backword          ;; when backword contains space
+                       (s-contains? " " backword))
+              (setq space-pos (ignore-errors (search-backward " ")))))
+          (save-excursion
+            (let* ((pos (ignore-errors (search-backward-regexp "\n")))
+                   (substr (when pos (buffer-substring pos cp))))
+              (when (or (and substr (s-blank? (s-trim substr)))
+                        (s-contains? "\n" backword))
+                (setq end pos))))
+          (if end
+              (kill-region cp end)
+            (if space-pos
+                (kill-region cp space-pos)
+              (backward-kill-word 1))))
+      (kill-region cp (- cp 1)))         ;; word is non-english word
+    ))
 
-(map! :leader
-      (:prefix "t"
-       :desc "Treemacs" "t" #'treemacs))
+(global-set-key  [C-backspace] 'aborn/backward-kill-word)
+;; Jump between 2 buffers
+(defun switch-to-previous-buffer ()
+  "Switch to previously opened buffer."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+(map! :nvi "C-." #'switch-to-previous-buffer)
+
+;; Custom key binds
+(map! :nvi :after 'swiper "C-s" #'swiper)
+(map! :after 'ace-window "C-w C-w" #'ace-window)
+
+(after! treemacs
+  (map! :leader
+        (:prefix "t"
+         :desc "Treemacs" "t" #'treemacs)))
 
 ;; My custom stuff
 (setq
@@ -74,8 +118,9 @@
  scroll-margin 2
  show-trailing-whitespace t
  eldoc-idle-delay 0.1
- +ivy-project-search-engines '(rg))
+ +ivy-project-search-engines '(rg)
+ all-the-icons-scale-factor 1.1)
 
-;; Native compile stuff
-;;(setq package-native-compile t)
-;;(setq comp-deferred-compilation t)
+;; Fix PATH inside emacs
+(after! exec-path-from-shell
+  (exec-path-from-shell-initialize))
