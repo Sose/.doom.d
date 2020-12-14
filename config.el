@@ -124,3 +124,6 @@
 ;; Fix PATH inside emacs
 (after! exec-path-from-shell
   (exec-path-from-shell-initialize))
+
+;; Python fill column is 88 with Black
+(add-hook! 'python-mode-hook (set-fill-column 88))
