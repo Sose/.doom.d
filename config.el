@@ -106,7 +106,6 @@
 
 ;; My custom stuff
 (setq
- projectile-project-search-path '("~/koodi")
  js-indent-level 2
  typescript-indent-level 2
  json-reformat:indent-width 2
