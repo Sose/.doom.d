@@ -126,3 +126,10 @@
 
 ;; Python fill column is 88 with Black
 (add-hook! 'python-mode-hook (set-fill-column 88))
+
+;; Use prettier to format Javascript and TypeScript, instead of LSP
+(setq-hook! 'js2-mode-hook
+  +format-with-lsp nil)
+
+(setq-hook! 'typescript-mode-hook
+  +format-with-lsp nil)
