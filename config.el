@@ -19,8 +19,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "Source Code Pro" :size 12 :weight 'regular)
+       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -102,7 +102,13 @@
 (after! treemacs
   (map! :leader
         (:prefix "t"
-         :desc "Treemacs" "t" #'treemacs)))
+         :desc "Treemacs"
+         "t" #'treemacs)))
+
+(map! :leader
+      (:prefix "c"
+       :desc "Show all errors"
+       "X" #'lsp-ui-flycheck-list))
 
 ;; My custom stuff
 (setq
