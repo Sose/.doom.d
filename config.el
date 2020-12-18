@@ -117,6 +117,9 @@
        :desc "Show all errors"
        "X" #'sose/lsp-ui-toggle))
 
+;; Visual line mode (word wrap)
+(global-visual-line-mode t)
+
 ;; My custom stuff
 (setq
  js-indent-level 2
