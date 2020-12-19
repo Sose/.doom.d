@@ -33,7 +33,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type t)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -134,7 +134,8 @@
  show-trailing-whitespace t
  eldoc-idle-delay 0.1
  +ivy-project-search-engines '(rg)
- all-the-icons-scale-factor 1.1)
+ all-the-icons-scale-factor 1.1
+ evil-move-cursor-back nil)
 
 ;; Fix PATH inside emacs
 (after! exec-path-from-shell
