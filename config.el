@@ -83,8 +83,8 @@
             (if space-pos
                 (kill-region cp space-pos)
               (backward-kill-word 1))))
-      (kill-region cp (- cp 1)))         ;; word is non-english word
-    ))
+      (kill-region cp (- cp 1)))))         ;; word is non-english word
+
 
 (global-set-key  [C-backspace] 'aborn/backward-kill-word)
 ;; Jump between 2 buffers
@@ -143,6 +143,12 @@
 
 ;; Python fill column is 88 with Black
 (add-hook! 'python-mode-hook (set-fill-column 88))
+
+(defun sose/cider-maybe-load ()
+  (cider-ns-reload))
+
+(add-hook! 'clojure-mode-hook
+  (add-hook 'after-save-hook #'sose/cider-maybe-load nil 'local))
 
 ;; Use prettier to format Javascript and TypeScript, instead of LSP
 (setq-hook! 'js2-mode-hook
