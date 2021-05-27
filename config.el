@@ -145,7 +145,12 @@
 (add-hook! 'python-mode-hook (set-fill-column 88))
 
 (defun sose/cider-maybe-load ()
-  (cider-ns-reload))
+  (interactive)
+  (let ((filename (file-name-nondirectory (buffer-file-name)))
+        (extension (file-name-extension (buffer-file-name))))
+    (when (and (not (string= filename "project.clj"))
+               (not (string= extension "edn")))
+      (cider-ns-reload))))
 
 (add-hook! 'clojure-mode-hook
   (add-hook 'after-save-hook #'sose/cider-maybe-load nil 'local))
