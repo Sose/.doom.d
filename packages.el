@@ -14,6 +14,7 @@
 (package! company-restclient)
 
 (unpin! cider)
+(unpin! jupyter)
 
 ;; (package! prettier)
 ;; To install a package directly from a remote git repo, you must specify a
